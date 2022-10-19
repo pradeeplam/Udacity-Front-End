@@ -1,0 +1,66 @@
+
+@import url("./cards.css");
+
+html{
+    font-family: system-ui;
+}
+body {
+    background-color: black;
+}
+
+header {
+    width: 90%;
+    max-width: 1240px;
+    margin: 0 auto;
+    padding-bottom: 20px;
+}
+
+footer {
+    min-height: 100%;
+    width: 90%;
+    max-width: 1240px;
+    /*padding-top: 20px;*/
+    margin-top: 10px;
+    margin: 0 auto;
+    margin-bottom: 0;
+    background-color: gold;
+}
+
+h1 {
+    font: 32px;
+    color: gold;
+}
+
+h2 {
+    font: 16px;
+    color: gold;
+}
+
+p { 
+    color: #f2f3f5;
+}
+
+.date{
+    color: #f2f3f5;
+    font-weight: bold;
+}
+
+.container{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto; 
+    width: 90%;
+    max-width: 1240px;
+    margin: 0 auto;
+    margin-bottom: 0;
+    gap: 20px;
+}
+
+.title{
+    font-size: 32px;
+    grid-column-start: span 4;
+}
+
+.blog-post-special{
+    grid-column-start: span 2;
+}

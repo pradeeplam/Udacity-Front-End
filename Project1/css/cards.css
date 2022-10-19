@@ -1,0 +1,131 @@
+
+.card {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    text-decoration: none;
+    color: #333;
+    border: 1px;
+    border-style: solid;
+    /*border-color: gold;*/
+    box-shadow: 0px 2px 5px rgba(255,215,0,0.5);
+
+    position: relative;
+    top: 0;
+    transition: all .1s ease-in;
+
+    border-radius: 0.5rem;
+    /*justify-content: space-between;*/
+    /*box-shadow: 2px 2px 0px 0px gold;*/
+}
+
+.card:hover {
+    top: -5px;
+    box-shadow: 0px 4px 5px rgba(255,215,0.6);
+}
+
+article {
+    flex: 1;
+    display: flex;
+    padding: 20px;
+    flex-direction: column;
+    /*padding: 20px;*/
+    justify-content: space-between;
+}
+
+.card-image{
+    border-radius: 0.5rem 0.5rem 0rem 0rem;
+    padding-bottom: 60%;
+    background-size: cover;
+    background-position: center center;
+}
+
+.image-s{
+    background-image: url("../images/img-s.jpeg");
+}
+
+.image-1{
+    background-image: url("../images/img-1.png");
+}
+
+.image-2{
+    background-image: url("../images/img-2.png");
+
+}
+
+.image-3{
+    background-image: url("../images/img-3.png");
+
+}
+
+.image-4{
+    background-image: url("../images/img-4.png");
+
+}
+
+.image-5{
+    background-image: url("../images/img-5.png");
+
+}
+
+.image-6{
+    background-image: url("../images/img-6.png");
+
+}
+
+.card-tag{
+    /*
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr; 
+    */
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+
+.tag {
+    font-size: 15px;
+    padding: 4px;
+    /*color: #fafafa;*/
+    color: #f2f3f5;/*#fff;*/
+    /*background: rgba(300,0,0,0.5);*/
+    border-radius: 0.5rem;
+    text-decoration: None;
+
+    margin-left: 5px;
+
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.rl {
+    background: #eb69ff;
+}
+
+.transformer {
+    background: #6e69ff;
+}
+
+.od {
+    background: #698fff;
+}
+
+.mlc {
+    background: #4ab655;
+}
+
+.nlp {
+    background: #cdab3c;
+}
+
+.vae {
+    background: #ff8269;
+}
+
+.hp {
+    background: #ff698a;
+}    

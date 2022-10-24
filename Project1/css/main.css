@@ -1,13 +1,17 @@
 
 @import url("./cards.css");
+@import url("./nav_bar.css");
+@import url("./footer.css");
 
 html{
     font-family: system-ui;
 }
 body {
-    background-color: black;
+    background-color: whitesmoke;
+    margin: 0;
 }
 
+/*
 header {
     width: 90%;
     max-width: 1240px;
@@ -19,25 +23,35 @@ footer {
     min-height: 100%;
     width: 90%;
     max-width: 1240px;
-    /*padding-top: 20px;*/
+    padding-top: 20px;
     margin-top: 10px;
     margin: 0 auto;
     margin-bottom: 0;
     background-color: gold;
-}
+}*/
 
 h1 {
     font: 32px;
-    color: gold;
+    color: black;
 }
 
 h2 {
     font: 16px;
-    color: gold;
+    color: whitesmoke;
 }
 
+h3 {
+    font: 12px;
+    color: whitesmoke;
+}
+
+
 p { 
-    color: #f2f3f5;
+    color: #9CA3AF;
+    /*font-style: italic;*/
+    font-family: "Open Sans", sans-serif;
+    font-size: 15px;
+    
 }
 
 .date{
@@ -47,10 +61,21 @@ p {
 
 .container{
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: auto; 
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    margin-bottom: 10px;
+}
+
+.container:last-child{
+    margin: 0;
+}
+
+.cards-container{
     width: 90%;
     max-width: 1240px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto; 
     margin: 0 auto;
     margin-bottom: 0;
     gap: 20px;
@@ -63,4 +88,8 @@ p {
 
 .blog-post-special{
     grid-column-start: span 2;
+}
+
+span{
+    font-size: 12px;
 }

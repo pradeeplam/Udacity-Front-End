@@ -1,0 +1,26 @@
+
+.footer-container{
+    /**/
+    background-color: black;
+    color: whitesmoke;
+    padding: 2.0rem 0;
+}
+
+.footer-row{
+    max-width: 1240px;
+    width: 90%;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.footer-col{
+    display: block;
+}
+
+
+.footer-row > *{
+    flex: 1;
+    padding-right: 50px;
+}

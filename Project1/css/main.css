@@ -51,7 +51,7 @@ p {
     /*font-style: italic;*/
     font-family: "Open Sans", sans-serif;
     font-size: 15px;
-    
+    line-height: 1.5;
 }
 
 .date{

@@ -6,29 +6,11 @@
 html{
     font-family: system-ui;
 }
+
 body {
     background-color: whitesmoke;
     margin: 0;
 }
-
-/*
-header {
-    width: 90%;
-    max-width: 1240px;
-    margin: 0 auto;
-    padding-bottom: 20px;
-}
-
-footer {
-    min-height: 100%;
-    width: 90%;
-    max-width: 1240px;
-    padding-top: 20px;
-    margin-top: 10px;
-    margin: 0 auto;
-    margin-bottom: 0;
-    background-color: gold;
-}*/
 
 h1 {
     font: 32px;
@@ -48,7 +30,6 @@ h3 {
 
 p { 
     color: #9CA3AF;
-    /*font-style: italic;*/
     font-family: "Open Sans", sans-serif;
     font-size: 15px;
     line-height: 1.5;
@@ -74,21 +55,35 @@ p {
     width: 90%;
     max-width: 1240px;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: 1fr;
     grid-template-rows: auto; 
     margin: 0 auto;
     margin-bottom: 0;
     gap: 20px;
 }
 
-.title{
-    font-size: 32px;
-    grid-column-start: span 4;
+@media (max-width: 30em) {
+    .cards-container{
+        grid-template-columns: 1fr;
+    }
+    h1{
+        display: None;
+    }
+
 }
 
-.blog-post-special{
-    grid-column-start: span 2;
+@media (min-width: 30em) {
+    .cards-container{
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
+
+@media (min-width: 60em) {
+    .cards-container{
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
 
 span{
     font-size: 12px;

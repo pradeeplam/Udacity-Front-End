@@ -18,6 +18,8 @@ const main = document.querySelector("main");
 const navbar_list = document.querySelector("#navbar__list");
 
 // Helper functions
+
+// Add new section with specified section ID
 function addNewSection(section_id){
     const newSection = document.createElement("section");
     newSection.id = "section" + section_id
@@ -31,6 +33,7 @@ function addNewSection(section_id){
     main.appendChild(newSection);
 }
 
+// Label active section with "active-section" class and remove active section when not active
 function changeActive(){
     for (const sec of sections){  // Ref isn't an issue as this can't be run until entire page finished
         const rect = sec.getBoundingClientRect();
@@ -47,7 +50,7 @@ function changeActive(){
 // Add new section via javascript
 addNewSection(4);
 
-// Click-to-scroll functionality to nav-bar buttons
+// Click-to-scroll functionality to nav-bar buttons and trigger active-section update
 function respondToTheClick(evt) {
     evt.preventDefault(); // You want to prvent the default of clicking on a link!!!!
     const sectionText = evt.target.textContent;
@@ -74,6 +77,7 @@ for (const sec of sections){
     navbar_list.appendChild(newItem);
 }
 
+// Time-out nav-bar after n seconds of inactivity and trigger active-section update
 const debounceScroll = (callback, waitTime) => {
     let timeoutId = null;
 
@@ -88,6 +92,7 @@ const debounceScroll = (callback, waitTime) => {
     }
 }
 
+// Handle waiting for n seconds between scroll
 const handleScroll = debounceScroll((evt) => { // Function takes in event object
     const navbar_menu = document.querySelector(".navbar__menu");
     if(window.pageYOffset != 0){

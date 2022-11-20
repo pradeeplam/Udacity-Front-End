@@ -1,21 +1,10 @@
-/*
- * Manipulating the DOM exercise.
- * Exercise programmatically builds navigation,
- * scrolls to anchors from navigation,
- * and highlights section in viewport upon scrolling.
- * 
- * Dependencies: None
- * 
- * JS Version: ES2015/ES6
- * 
- * JS Standard: ESlint
- * 
-*/
 
 // Define Global Variables
 const main = document.querySelector("main");
 
-const navbar_list = document.querySelector("#navbar__list");
+const navbar_list = document.querySelector("#navbar__list"); // Initially empty list
+
+let activeNav = null; // Active navigation section
 
 // Helper functions
 
@@ -33,26 +22,29 @@ function addNewSection(section_id){
     main.appendChild(newSection);
 }
 
-// Label active section with "active-section" class and remove active section when not active
-function changeActive(){
-    for (const sec of sections){  // Ref isn't an issue as this can't be run until entire page finished
-        const rect = sec.getBoundingClientRect();
-
-        if (rect.top >= 0 && rect.top <= rect.height){
-            sec.classList.add("active-section");
-        }
-        else {
-            sec.classList.toggle("active-section", false);
-        }
+// Switch active__nav to target (If not null) and store active navbar item 
+function updateActiveNav(target){
+    if (activeNav != null){
+        activeNav.classList.remove("active__nav");
     }
+
+    if (target != null){
+        target.classList.add("active__nav");
+    }
+    activeNav = target;
 }
+
+// Main code
 
 // Add new section via javascript
 addNewSection(4);
 
-// Click-to-scroll functionality to nav-bar buttons and trigger active-section update
+// Click-to-scroll functionality for navbar buttons (& update active navbar item)
 function respondToTheClick(evt) {
-    evt.preventDefault(); // You want to prvent the default of clicking on a link!!!!
+    evt.preventDefault(); // Prevent the default of clicking on a link!
+
+    updateActiveNav(evt.currentTarget); 
+
     const sectionText = evt.target.textContent;
     const sectionId = "section" + sectionText.split(" ")[1];
     const sectionElement = document.getElementById(sectionId);
@@ -63,37 +55,74 @@ function respondToTheClick(evt) {
         inline: "nearest"
     }); 
 
-    changeActive(); // Place/remove "active-section" class 
 }
 
-// Create nav-bar
+// Create navbar
 const sections = document.querySelectorAll("section");
 
+const nameToNavbar = {}
 for (const sec of sections){
     const newItem = document.createElement("li");
     const textContent = sec.getAttribute("data-nav");
     newItem.innerHTML = `<a href="#" class="menu__link">${textContent}</a>`;
     newItem.addEventListener("click", respondToTheClick);
     navbar_list.appendChild(newItem);
+    nameToNavbar[textContent] = newItem;
 }
 
-// Time-out nav-bar after n seconds of inactivity and trigger active-section update
-const debounceScroll = (callback, waitTime) => {
+const navHeight = document.querySelector(".navbar__menu").getBoundingClientRect().height;
+
+// Find/Return active section element
+function getActiveSection(){
+    for (const sec of sections){  // Ref isn't an issue as this can't be run until entire page finished
+        const rect = sec.getBoundingClientRect();
+        
+        if (rect.bottom > navHeight && rect.bottom < navHeight + rect.height){
+            return sec;
+        }
+        else {
+            sec.classList.toggle("active-section", false);
+        }
+    }
+
+    return null
+}
+
+// Handle scroll events
+function handleScroll(evt){
+    const activeSection = getActiveSection();
+    
+    if (activeSection != null){
+        const rect = activeSection.getBoundingClientRect();
+        activeSection.classList.add("active-section");
+        const navId = activeSection.getAttribute("data-nav");
+        const navElement = nameToNavbar[navId];
+        updateActiveNav(navElement);
+    }
+    else {
+        updateActiveNav(null);
+    }
+}
+
+document.addEventListener("scroll", handleScroll);
+
+// Time-out navbar after n seconds of inactivity
+const debounceTimer = (callback, waitTime) => {
     let timeoutId = null;
 
     return (...args) => { // Just is an event in this case!
         const navbar_menu = document.querySelector(".navbar__menu");
         navbar_menu.style.display = "block";
-        
-        changeActive() // Place/remove "active-section" class
  
         clearTimeout(timeoutId);
         timeoutId = setTimeout(() => callback(args), waitTime);
     }
 }
 
-// Handle waiting for n seconds between scroll
-const handleScroll = debounceScroll((evt) => { // Function takes in event object
+// Time-out after 5 seconds of inactivity
+// Will hide navbar if not at the top of page
+// Show navbar at any activity
+const resetTimer = debounceTimer((evt) => {
     const navbar_menu = document.querySelector(".navbar__menu");
     if(window.pageYOffset != 0){
         navbar_menu.style.display = "none";
@@ -101,6 +130,10 @@ const handleScroll = debounceScroll((evt) => { // Function takes in event object
     else{
         navbar_menu.style.display = "block";
     }
-}, 2000); // 2000 ms (2 sec)
+}, 5000); // 5000 ms (5 sec)
 
-document.addEventListener("scroll", handleScroll);
+
+// Activity = click, mousemove, or scroll
+document.addEventListener("click", resetTimer);
+document.addEventListener("mousemove", resetTimer);
+document.addEventListener("scroll", resetTimer);

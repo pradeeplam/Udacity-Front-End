@@ -74,18 +74,19 @@ const navHeight = document.querySelector(".navbar__menu").getBoundingClientRect(
 
 // Find/Return active section element
 function getActiveSection(){
+    let retSec = null;
     for (const sec of sections){  // Ref isn't an issue as this can't be run until entire page finished
         const rect = sec.getBoundingClientRect();
         
         if (rect.bottom > navHeight && rect.bottom < navHeight + rect.height){
-            return sec;
+            retSec = sec;
         }
         else {
             sec.classList.toggle("active-section", false);
         }
     }
 
-    return null
+    return retSec;
 }
 
 // Handle scroll events

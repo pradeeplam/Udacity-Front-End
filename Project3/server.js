@@ -30,13 +30,13 @@ function listening(){
 }
 
 app.get('/grabData', function sendData(req, res){
-    console.log('Sent data to client: ' + JSON.stringify(projectData));
+    console.log('Sent data to client: ', JSON.stringify(projectData));
     res.send(projectData);
 });
 
 app.post('/addData', function receiveData(req, res){
-    console.log('Sent data to client: ' + JSON.stringify(req.body));  
-    projectData["temp"] = req.body.temp;
-    projectData["date"] = req.body.date;
-    projectData["content"] = req.body.content;
+    console.log('Sent data to client: ', JSON.stringify(req.body));  
+    projectData['temp'] = req.body.temp;
+    projectData['date'] = req.body.date;
+    projectData['content'] = req.body.content;
 });

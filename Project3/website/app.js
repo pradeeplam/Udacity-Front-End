@@ -5,12 +5,12 @@ const feelings = document.querySelector('#feelings');
 
 // Create a new date instance dynamically with JS
 let d = new Date();
-let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
+let newDate = d.getMonth() + 1 + '/' + d.getDate() + '/' + d.getFullYear();
 
 const localAddress = 'http://localhost:5502'
 const zip2coordURL = 'http://api.openweathermap.org/geo/1.0/zip?';
 const coord2weatherURL = 'https://api.openweathermap.org/data/2.5/weather?';
-const apiKey = '1aafe2c60b0234d552d24f2a21835624';
+const apiKey = '1aafe2c60b0234d552d24f2a21835624&units=imperial';
 
 /* Helper Functions */
 
